@@ -1,4 +1,6 @@
-This is the code for this article:
+# Basic example of wordpress plugin to select, update, insert and delete from database (CRUD)
+
+This is the code for the article:
 
 https://laloah.wordpress.com/2013/06/14/basic-example-of-wordpress-plugin-to-select-update-insert-and-delete-from-database-crud
 
