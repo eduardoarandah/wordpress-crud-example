@@ -6,6 +6,25 @@ Version: 1
 Author: sinetiks.com
 Author URI: http://sinetiks.com
 */
+// function to create the DB / Options / Defaults					
+function ss_options_install() {
+
+    global $wpdb;
+
+    $table_name = $wpdb->prefix . "school";
+    $charset_collate = $wpdb->get_charset_collate();
+    $sql = "CREATE TABLE $table_name (
+            `id` varchar(3) CHARACTER SET utf8 NOT NULL,
+            `name` varchar(50) CHARACTER SET utf8 NOT NULL,
+            PRIMARY KEY (`id`)
+          ) $charset_collate; ";
+
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    dbDelta($sql);
+}
+
+// run the install scripts upon plugin activation
+register_activation_hook(__FILE__, 'ss_options_install');
 
 //menu items
 add_action('admin_menu','sinetiks_schools_modifymenu');
@@ -16,7 +35,7 @@ function sinetiks_schools_modifymenu() {
 	'Schools', //menu title
 	'manage_options', //capabilities
 	'sinetiks_schools_list', //menu slug
-	sinetiks_schools_list //function
+	'sinetiks_schools_list' //function
 	);
 	
 	//this is a submenu
